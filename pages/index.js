@@ -1,11 +1,14 @@
 import styles from "../styles/Home.module.css";
 import DashboardLayout from "../components/layout/Dashboard/DashboardLayout";
+import withPermission from "../components/util/withPermission";
 
-export default function Home() {
+const Home = () => {
   return (
     <DashboardLayout metadata={{ title: "Inicio" }}>
       <div className={styles.container}>
-        <main className={styles.main}></main>
+        <main className={styles.main}>
+          <h1>Resumen de inventarios</h1>
+        </main>
       </div>
       <footer className={styles.footer}>
         <a
@@ -19,4 +22,6 @@ export default function Home() {
       </footer>
     </DashboardLayout>
   );
-}
+};
+
+export default withPermission(Home);

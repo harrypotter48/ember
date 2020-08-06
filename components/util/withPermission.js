@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { navigate } from "gatsby";
-import useReduxHandler from "../../hooks/useReduxHandler";
-import ROUTES from "../utils/routes";
+import storage from "./storage";
+import { useRouter } from "next/router";
 
 const AuthProvider = ({ children }) => {
-  const { isLoggedIn, isBrowser } = useReduxHandler();
+  const router = useRouter();
+  const isLoggedIn = () => (storage.getToken() ? true : false);
+  const isBrowser = () => typeof window !== "undefined";
   if (isLoggedIn()) return children;
-  if (isBrowser()) navigate(ROUTES.LOGIN);
+  if (isBrowser()) router.push("/login");
   return null;
 };
 AuthProvider.propTypes = {
@@ -19,7 +20,7 @@ AuthProvider.propTypes = {
 AuthProvider.defaultProps = {
   children: null,
 };
-export default (WrappedComponent) => {
+const withPermission = (WrappedComponent) => {
   const hocComponent = (...props) => {
     return (
       <AuthProvider>
@@ -29,3 +30,5 @@ export default (WrappedComponent) => {
   };
   return hocComponent;
 };
+
+export default withPermission;

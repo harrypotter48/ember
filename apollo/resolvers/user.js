@@ -51,7 +51,6 @@ export default (db) => {
 
       signIn: async (parent, { login, password }, { models, secret }) => {
         const rows = await sqlFind(db, "usuario", { usuario: login });
-        console.log(rows);
 
         if (rows.length === 0) {
           throw new UserInputError(

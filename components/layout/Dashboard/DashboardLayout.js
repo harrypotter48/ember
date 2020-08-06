@@ -34,10 +34,14 @@ const DashboardLayout = ({
 DashboardLayout.propTypes = {
   metadata: PropTypes.objectOf(PropTypes.any).isRequired,
   nodes: PropTypes.arrayOf(PropTypes.any),
+  showNavbar: PropTypes.bool,
+  showSideBar: PropTypes.bool,
 };
 
 DashboardLayout.defaultProps = {
   nodes: [],
+  showNavbar: true,
+  showSideBar: true,
 };
 
 export default DashboardLayout;

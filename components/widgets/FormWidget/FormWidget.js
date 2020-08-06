@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import FieldWidget from "../FieldWidget";
 import { Row, Col } from "react-bootstrap";
 
-const FormWidget = ({ fields }) => {
+const FormWidget = ({ fields, onSubmit }) => {
   const { register, handleSubmit, watch, errors, setValue } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmitHandler = (data) => onSubmit(data);
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmitHandler)} noValidate>
         <Row>
           <Col>
             {fields &&
@@ -17,6 +17,7 @@ const FormWidget = ({ fields }) => {
               fields.map((item) => {
                 return (
                   <FieldWidget
+                    key={item.name}
                     item={item}
                     register={register}
                     errors={errors}
@@ -44,10 +45,12 @@ const FormWidget = ({ fields }) => {
 
 FormWidget.propTypes = {
   fields: PropTypes.arrayOf(PropTypes.any),
+  onSubmit: PropTypes.func,
 };
 
 FormWidget.defaultProps = {
   fields: [],
+  onSubmit: () => {},
 };
 
 export default FormWidget;
