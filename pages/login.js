@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useMutation, useApolloClient } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import { withApollo } from "../apollo/client";
-import authQuery from "../apollo/queries/authQuery";
+import authMutation from "../apollo/mutations/auth";
 import storage from "../components/util/storage";
 
 const Login = () => {
@@ -28,7 +28,7 @@ const Login = () => {
   ];
 
   const client = useApolloClient();
-  const [login] = useMutation(authQuery.LOGIN_MUTATION);
+  const [login] = useMutation(authMutation.LOGIN_MUTATION);
   const [errorMsg, setErrorMsg] = useState();
   const router = useRouter();
 

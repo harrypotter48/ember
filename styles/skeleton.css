@@ -1,0 +1,26 @@
+.widgets-skeleton-element {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: shine-lines;
+  animation-name: shine-lines;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  background: #888888;
+  background: linear-gradient(to right, #888888 8%, #aaaaaa 18%, #888888 33%);
+  background-size: 900px 100px;
+  position: relative;
+  width: 100%;
+}
+
+@keyframes shine-lines {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
