@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-micro";
 import apollo from "../../apollo";
 
 const apolloServer = new ApolloServer({
+  subscriptions: false,
   schema: apollo,
   context(ctx) {
     return ctx;
